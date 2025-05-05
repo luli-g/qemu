@@ -2,10 +2,12 @@
 
 set -e
 
-echo "🔧 QEMU Guest Agent wird installiert..."
-
-# Paketliste aktualisieren
+echo "📦 System wird aktualisiert..."
 sudo apt update
+sudo apt upgrade -y
+sudo apt autoremove -y
+
+echo "🔧 QEMU Guest Agent wird installiert..."
 
 # QEMU Guest Agent installieren
 sudo apt install -y qemu-guest-agent
@@ -14,8 +16,9 @@ sudo apt install -y qemu-guest-agent
 sudo systemctl enable qemu-guest-agent
 sudo systemctl start qemu-guest-agent
 
-# Status anzeigen
-echo "✅ Status von qemu-guest-agent:"
-systemctl status qemu-guest-agent --no-pager
+echo "✅ QEMU Guest Agent ist installiert und aktiv."
 
-echo "✅ QEMU Guest Agent ist installiert und aktiviert!"
+# Neustart
+echo "🔁 Neustart in wenigen Sekunden..."
+sleep 3
+sudo reboot now
